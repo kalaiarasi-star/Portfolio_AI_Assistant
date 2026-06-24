@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalaiarasi | Interactive AI Portfolio</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #58f3f8;
+      --primary-dim: #008489;
+      --surface: #0e1515;
+      --surface-bright: #343a3b;
+      --on-surface: #e0e3e3;
+    }
+
+    body {
+      background-color: var(--surface);
+      color: var(--on-surface);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .glass {
+      background: rgba(14, 21, 21, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(88, 243, 248, 0.1);
+    }
+
+    .glass-card {
+      background: rgba(22, 29, 29, 0.4);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(88, 243, 248, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(88, 243, 248, 0.3);
+      box-shadow: 0 0 20px rgba(88, 243, 248, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .glow-text {
+      text-shadow: 0 0 10px rgba(88, 243, 248, 0.5);
+    }
+
+    .cyan-gradient {
+      background: linear-gradient(90deg, #58f3f8 0%, #00f2ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cyber-grid {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image: 
+        linear-gradient(rgba(88, 243, 248, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(88, 243, 248, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: radial-gradient(circle at 50% 50%, black, transparent);
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-dim); border-radius: 10px; }
+    
+    code, pre { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="selection:bg-primary/30">
+
+  <div class="cyber-grid"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 border-b border-white/5 glass">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="text-2xl font-bold tracking-tighter text-primary">KALAIARASI</div>
+      <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+        <a href="#home" class="text-primary border-b-2 border-primary pb-1">Home</a>
+        <a href="#assistant" class="text-white/60 hover:text-primary transition-colors">Assistant</a>
+        <a href="#projects" class="text-white/60 hover:text-primary transition-colors">Projects</a>
+        <a href="#skills" class="text-white/60 hover:text-primary transition-colors">Skills</a>
+        <a href="#contact" class="text-white/60 hover:text-primary transition-colors">Contact</a>
+      </div>
+      <button class="p-2 rounded-full hover:bg-white/5 text-white/80">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex flex-col justify-center px-6 pt-20 max-w-7xl mx-auto">
+    <div class="space-y-4">
+      <div class="text-xs font-mono text-primary/80 tracking-widest uppercase glow-text">System Initialization Complete</div>
+      <h1 class="text-5xl md:text-8xl font-bold tracking-tight">
+        Hi, I am <span class="cyan-gradient">Kalaiarasi</span>
+      </h1>
+      <h2 id="typing-text" class="text-3xl md:text-5xl font-light text-white/50 border-r-2 border-primary pr-2 animate-pulse w-fit">Full-Stack Engineer|</h2>
+    </div>
+    <div class="mt-12 flex space-x-6">
+      <a href="#assistant" class="px-8 py-4 bg-primary text-surface font-bold rounded-sm hover:brightness-110 transition-all shadow-[0_0_20px_rgba(88,243,248,0.3)]">Ask My AI</a>
+      <a href="#projects" class="px-8 py-4 border border-primary/30 text-primary font-bold rounded-sm hover:bg-primary/5 transition-all">Explore Projects</a>
+    </div>
+  </section>
+
+  <!-- AI Assistant Section -->
+  <section id="assistant" class="py-24 px-6 max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold">KALAI AI <span class="text-primary">v1.0</span></h2>
+      <p class="text-white/50 mt-2">Ask me about my experience, skills, or projects.</p>
+    </div>
+
+    <div class="grid md:grid-cols-[250px_1fr] gap-4 glass p-2 rounded-xl">
+      <!-- Suggestions -->
+      <div class="hidden md:block p-4 space-y-2 border-r border-white/5">
+        <div class="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-4">Example Queries</div>
+        <button onclick="prefill('Java Projects')" class="w-full text-left p-2 text-xs text-white/50 hover:text-primary hover:bg-primary/5 rounded transition-all">Java Projects</button>
+        <button onclick="prefill('Python Expertise')" class="w-full text-left p-2 text-xs text-white/50 hover:text-primary hover:bg-primary/5 rounded transition-all">Python Expertise</button>
+        <button onclick="prefill('Web Development')" class="w-full text-left p-2 text-xs text-white/50 hover:text-primary hover:bg-primary/5 rounded transition-all">Web Development</button>
+        <button onclick="prefill('[SECRET] Dev Mode')" class="w-full text-left p-2 text-xs text-white/50 hover:text-primary hover:bg-primary/5 rounded transition-all font-mono">[SECRET] Dev Mode</button>
+      </div>
+
+      <!-- Chat Interface -->
+      <div class="flex flex-col h-[500px]">
+        <div id="chat-output" class="flex-1 overflow-y-auto p-6 space-y-4 font-light">
+          <!-- Welcome Message -->
+          <div class="flex items-start space-x-3">
+            <div class="w-8 h-8 rounded bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"/></svg>
+            </div>
+            <div class="bg-white/5 p-4 rounded-lg rounded-tl-none border border-white/5 max-w-[80%] text-sm">
+              Hello! I'm Kalai's digital twin. How can I assist you with her portfolio today?
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 border-t border-white/5">
+          <div class="relative">
+            <input id="chat-input" type="text" placeholder="Type your query..." class="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-12 text-sm focus:outline-none focus:border-primary/50 transition-all">
+            <button class="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 hover:text-primary">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+            </button>
+            <button onclick="handleSend()" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-primary text-surface rounded-full flex items-center justify-center hover:scale-105 transition-all">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="flex items-center space-x-4 mb-16">
+      <div class="text-xs font-mono text-primary tracking-widest uppercase">Case Studies</div>
+      <h2 class="text-3xl font-bold">Selected Technical Implementations</h2>
+      <div class="flex-1 h-[1px] bg-white/10"></div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Java Category -->
+      <div class="space-y-6">
+        <div class="flex items-center space-x-3 mb-8">
+          <div class="w-10 h-10 glass-card flex items-center justify-center rounded">☕</div>
+          <h3 class="text-2xl font-bold">Java</h3>
+        </div>
+        
+        <div class="glass-card p-6 rounded-lg space-y-4 border-l-4 border-l-primary/30">
+          <div class="text-[10px] font-mono text-primary uppercase">Systems</div>
+          <h4 class="text-lg font-bold">Library Management</h4>
+          <p class="text-sm text-white/50">Scalable architecture for tracking large-scale book inventories with user authentication.</p>
+          <div class="flex gap-2">
+            <span class="text-[9px] px-2 py-1 bg-white/5 rounded border border-white/10">java</span>
+          </div>
+          <a href="https://github.com/kalaiarasi-star/UNIT-5-Library_system_using_encapsulation" target="_blank">🔗 View Source</a>
+        </div>
+
+        <div class="glass-card p-6 rounded-lg">
+          <h4 class="text-lg font-bold">Banking System</h4>
+          <p class="text-sm text-white/50">Secure transaction handling system with multi-threaded processing.</p>
+          <a href="https://github.com/kalaiarasi-star/UNIT-4-Banking_system_using_exception_handling" target="_blank">🔗 View Source</a>
+        </div>
+      </div>
+
+      <!-- Python Category -->
+      <div class="space-y-6">
+        <div class="flex items-center space-x-3 mb-8">
+          <div class="w-10 h-10 glass-card flex items-center justify-center rounded">🐍</div>
+          <h3 class="text-2xl font-bold">Python</h3>
+        </div>
+
+        <div class="glass-card p-6 rounded-lg border-l-4 border-l-primary/30">
+          <div class="text-[10px] font-mono text-primary uppercase">Gaming system</div>
+          <h4 class="text-lg font-bold">Hangman Game</h4>
+           <p class="text-sm text-white/50">loops and conditional statements to check guesses.</p>
+          <div class="flex gap-2 mt-4">
+            <span class="text-[9px] px-2 py-1 bg-white/5 rounded border border-white/10">Python</span>
+          </div>
+          <a href="https://github.com/kalaiarasi-star/UNIT-5-Hangman-guess_the_word-" target="_blank">🔗 View Source </a>
+        </div>
+
+        <div class="glass-card p-6 rounded-lg">
+          <h4 class="text-lg font-bold">Dungeon Explorer Game </h4>
+          <p class="text-sm text-white/50">uses functions to create an interactive text-based adventure.</p>
+        </div>
+        <a href="https://github.com/kalaiarasi-star/UNIT-4-Function" target="_blank">🔗 View Source </a>
+      </div>
+
+      <!-- Web Category -->
+      <div class="space-y-6">
+        <div class="flex items-center space-x-3 mb-8">
+          <div class="w-10 h-10 glass-card flex items-center justify-center rounded">🌐</div>
+          <h3 class="text-2xl font-bold">Web</h3>
+        </div>
+
+        <div class="glass-card p-6 rounded-lg border-l-4 border-l-primary/30">
+          <div class="text-[10px] font-mono text-primary uppercase">Fullstack</div>
+          <h4 class="text-lg font-bold">Filter application</h4>
+          <p class="text-sm text-white/50">dynamically filter and display content based on input criteria through DOM manipulation.</p>
+          <div class="flex gap-2 mt-4">
+            <span class="text-[9px] px-2 py-1 bg-white/5 rounded border border-white/10">html</span>
+            <span class="text-[9px] px-2 py-1 bg-white/5 rounded border border-white/10">javascript</span>
+          </div>
+           <a href="https://github.com/kalaiarasi-star/UNIT-3--Filter-application-using-js" target="_blank">🔗 View Source</a>
+        </div>
+
+        <div class="glass-card p-6 rounded-lg">
+          <h4 class="text-lg font-bold">Restaurant webpage</h4>
+          <p class="text-sm text-white/50">enabling dynamic content updates without reloading the page.</p>
+        </div>
+         <a href="https://github.com/kalaiarasi-star/UNIT-5-Restaurant_webpage_js" target="_blank">🔗 View Source</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills visualization omitted for brevity in code output, can be added as a canvas-based tech tree -->
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 px-6 max-w-4xl mx-auto">
+    <div class="glass p-8 md:p-12 rounded-2xl relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-1 bg-primary/30"></div>
+      
+      <div class="mb-12">
+        <h2 class="text-4xl font-bold mb-4">Let's Build the Future</h2>
+        <p class="text-white/50">Available for collaborations and technical consultations.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="space-y-1">
+          <label class="text-[10px] font-mono text-white/40 uppercase tracking-widest px-2">Identification</label>
+          <input type="text" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-sm focus:outline-none focus:border-primary/50 transition-all">
+        </div>
+        <div class="space-y-1">
+          <label class="text-[10px] font-mono text-white/40 uppercase tracking-widest px-2">Communications</label>
+          <input type="email" placeholder="Email Address" class="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-sm focus:outline-none focus:border-primary/50 transition-all">
+        </div>
+        <div class="md:col-span-2 space-y-1">
+          <label class="text-[10px] font-mono text-white/40 uppercase tracking-widest px-2">Protocol Details</label>
+          <textarea rows="4" placeholder="How can we collaborate?" class="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-sm focus:outline-none focus:border-primary/50 transition-all"></textarea>
+        </div>
+      </div>
+
+      <button class="w-full mt-8 py-4 bg-primary text-surface font-bold rounded shadow-[0_10px_30px_rgba(88,243,248,0.2)] hover:brightness-110 transition-all uppercase tracking-widest text-xs">
+        Execute Send Transmission
+      </button>
+      <script>
+
+emailjs.init("YOUR_PUBLIC_KEY");
+
+document.getElementById("contact-form")
+.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    emailjs.sendForm(
+        "service123",
+        "visitor345",
+        this
+    ).then(function(){
+
+        alert("Message sent successfully!");
+
+    }, function(error){
+
+        alert("Failed to send");
+
+    });
+
+});
+
+</script>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+      <div class="text-xs font-mono text-white/40 tracking-widest">KALAIARASI</div>
+      <div class="text-[10px] font-mono text-white/30 uppercase tracking-tighter text-center">
+        © 2024 KALAIARASI. ENGINEERED FOR THE NEXT GEN.
+      </div>
+      <div class="flex gap-6 text-xs text-white/40 font-mono">
+        <a href="https://github.com/kalaiarasi-star" class="hover:text-primary transition-colors">Github</a>
+        <a href="https://www.linkedin.com/in/kalaiarasi-s-63123b386/" class="hover:text-primary transition-colors">LinkedIn</a>
+        <a href="#" class="hover:text-primary transition-colors">Source Code</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Typing Animation
+    const typingElement = document.getElementById('typing-text');
+    const professions = ["Full-Stack Engineer", "Java Specialist", "Python Enthusiast", "UI Innovator"];
+    let profIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+      const current = professions[profIndex];
+      if (isDeleting) {
+        typingElement.textContent = current.substring(0, charIndex--) + "|";
+      } else {
+        typingElement.textContent = current.substring(0, charIndex++) + "|";
+      }
+
+      if (!isDeleting && charIndex === current.length + 1) {
+        isDeleting = true;
+        setTimeout(type, 2000);
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        profIndex = (profIndex + 1) % professions.length;
+        setTimeout(type, 500);
+      } else {
+        setTimeout(type, isDeleting ? 50 : 100);
+      }
+    }
+    type();
+
+    // AI Chat Logic
+    const chatOutput = document.getElementById('chat-output');
+    const chatInput = document.getElementById('chat-input');
+
+    const responses = {
+      java: "I've built several Java-based solutions including a Library Management System and a high-concurrency Banking System. I focus on OOP principles and clean architecture.",
+      python: "Python is my go-to for automation and AI. I've developed Face Detection systems using OpenCV and predictive models for academic performance.",
+      web: "In web development, I leverage Next.js and Tailwind CSS to create high-performance, responsive interfaces like this very portfolio.",
+      secret: "SYSTEM OVERRIDE: [DEVELOPER MODE ACTIVATED]. Advanced technical specifications, private repositories, and beta projects are now visible in the project hub.",
+      default: "That's an interesting query! While I'm still learning, I can tell you about Kalai's projects in Java, Python, or her web development skills. Which would you like to explore?"
+    };
+
+    function addMessage(text, isUser = false) {
+      const div = document.createElement('div');
+      div.className = `flex items-start space-x-3 ${isUser ? 'flex-row-reverse space-x-reverse' : ''}`;
+      div.innerHTML = `
+        <div class="w-8 h-8 rounded ${isUser ? 'bg-primary' : 'bg-primary/20 border border-primary/40'} flex items-center justify-center shrink-0">
+          ${isUser ? '👤' : '🤖'}
+        </div>
+        <div class="${isUser ? 'bg-primary/20' : 'bg-white/5'} p-4 rounded-lg rounded-tl-none border border-white/5 max-w-[80%] text-sm">
+          ${text}
+        </div>
+      `;
+      chatOutput.appendChild(div);
+      chatOutput.scrollTop = chatOutput.scrollHeight;
+    }
+
+    function handleSend() {
+      const query = chatInput.value.toLowerCase();
+      if (!query) return;
+
+      addMessage(chatInput.value, true);
+      chatInput.value = '';
+
+      setTimeout(() => {
+        let reply = responses.default;
+        if (query.includes('java')) reply = responses.java;
+        else if (query.includes('python')) reply = responses.python;
+        else if (query.includes('web')) reply = responses.web;
+        else if (query.includes('secret')) reply = responses.secret;
+
+        addMessage(reply);
+      }, 600);
+    }
+
+    function prefill(text) {
+      chatInput.value = text;
+      handleSend();
+    }
+
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') handleSend();
+    });
+  </script>
+</body>
+</html>
